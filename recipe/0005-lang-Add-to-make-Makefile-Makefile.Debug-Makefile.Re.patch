@@ -1,0 +1,29 @@
+From 34658bbc59f000d74c08d3b03d8e5c501418ab43 Mon Sep 17 00:00:00 2001
+From: Ray Donnelly <mingw.android@gmail.com>
+Date: Mon, 23 Feb 2015 22:18:27 +0000
+Subject: [PATCH 5/7] lang: Add to make (^Makefile, ^Makefile.Debug,
+ ^Makefile.Release, *.make)
+
+All but one addition are full filename patterns. The
+Makefile.Debug and Makefile.Release ones are used by Qt, the *.make
+one is used by CMake.
+---
+ src/lang.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/lang.c b/src/lang.c
+index 247ef31..35ca2fb 100644
+--- a/src/lang.c
++++ b/src/lang.c
+@@ -58,7 +58,7 @@ lang_spec_t langs[] = {
+     { "log", { "log" } },
+     { "lua", { "lua" } },
+     { "m4", { "m4" } },
+-    { "make", { "Makefiles", "mk", "mak" } },
++    { "make", { "^Makefile", "^Makefile.Debug", "^Makefile.Release", "Makefiles", "mk", "mak", "make" } },
+     { "mako", { "mako" } },
+     { "markdown", { "markdown", "mdown", "mdwn", "mkdn", "mkd", "md" } },
+     { "mason", { "mas", "mhtml", "mpl", "mtxt" } },
+-- 
+2.15.0
+

@@ -1,0 +1,25 @@
+From 6af56b8670a4389c4b2389d74146f2da877467ac Mon Sep 17 00:00:00 2001
+From: Ray Donnelly <mingw.android@gmail.com>
+Date: Sat, 12 Dec 2015 19:55:47 +0000
+Subject: [PATCH 7/7] lang: Add cmake (^CMakeLists.txt, ^CMakeCache.txt ..
+
+.. ^CMakeError.log, ^CMakeOutput.log, cmake)
+---
+ src/lang.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/lang.c b/src/lang.c
+index 9c402ed..a7722fb 100644
+--- a/src/lang.c
++++ b/src/lang.c
+@@ -17,6 +17,7 @@ lang_spec_t langs[] = {
+     { "cfmx", { "cfc", "cfm", "cfml" } },
+     { "chpl", { "chpl" } },
+     { "clojure", { "clj", "cljs", "cljc", "cljx" } },
++    { "cmake", { "^CMakeLists.txt", "^CMakeCache.txt", "^CMakeError.log", "^CMakeOutput.log", "cmake" } },
+     { "coffee", { "coffee", "cjsx" } },
+     { "cpp", { "cpp", "cc", "C", "cxx", "m", "hpp", "hh", "h", "H", "hxx", "tpp" } },
+     { "crystal", { "cr", "ecr" } },
+-- 
+2.15.0
+

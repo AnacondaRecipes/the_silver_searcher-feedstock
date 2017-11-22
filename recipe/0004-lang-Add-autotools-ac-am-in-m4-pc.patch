@@ -1,0 +1,24 @@
+From edd18983b0ca880eb91ca30f201a68ebc5ad374d Mon Sep 17 00:00:00 2001
+From: Ray Donnelly <mingw.android@gmail.com>
+Date: Mon, 23 Feb 2015 22:16:54 +0000
+Subject: [PATCH 4/7] lang: Add autotools (ac, am, in, m4, pc)
+
+---
+ src/lang.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/lang.c b/src/lang.c
+index 7fca3c2..247ef31 100644
+--- a/src/lang.c
++++ b/src/lang.c
+@@ -9,6 +9,7 @@ lang_spec_t langs[] = {
+     { "ada", { "ada", "adb", "ads" } },
+     { "asciidoc", { "adoc", "ad", "asc", "asciidoc" } },
+     { "asm", { "asm", "s" } },
++    { "autotools", { "ac", "am", "in", "m4", "pc" } },
+     { "batch", { "bat", "cmd" } },
+     { "bitbake", { "bb", "bbappend", "bbclass", "inc" } },
+     { "bro", { "bro", "bif" } },
+-- 
+2.15.0
+
