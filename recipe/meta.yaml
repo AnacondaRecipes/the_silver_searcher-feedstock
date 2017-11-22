@@ -1,4 +1,4 @@
-{% set name = "the-silver-searcher" %}
+{% set name = "the_silver_searcher" %}
 {% set version = "2.1.0" %}
 {% set p = 'm2-' if win else '' %}
 {% set n = 'm2w64-' if win else '' %}
