@@ -38,6 +38,7 @@ requirements:
     - {{ n }}zlib
   run:
     - {{ n }}pcre
+    - {{ n }}xz                # [win]
     - {{ n }}gcc-libs          # [win]
 
 test:
