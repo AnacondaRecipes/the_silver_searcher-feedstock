@@ -12,10 +12,6 @@ else
   export HOST_BUILD="--host=${HOST}"
 fi
 
-if [[ ${HOST} =~ .*darwin.* ]]; then
-  export LDFLAGS=${LDFLAGS_CC}
-fi
-
 ./autogen.sh
 ./configure --prefix="${PREFIX}" ${HOST_BUILD}
 make -j${CPU_COUNT} ${VERBOSE_AT}
