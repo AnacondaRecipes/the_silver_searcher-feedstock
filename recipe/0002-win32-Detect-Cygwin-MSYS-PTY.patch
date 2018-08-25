@@ -1,4 +1,4 @@
-From 23819dc5932b6d7f6ceb9a32310ccf9e17f95ce9 Mon Sep 17 00:00:00 2001
+From f1bcca356636c9dbb45cad4edb8165d20950107a Mon Sep 17 00:00:00 2001
 From: "K.Takata" <kentkt@csc.jp>
 Date: Thu, 1 Jun 2017 22:19:25 +0900
 Subject: [PATCH 2/7] win32: Detect Cygwin/MSYS PTY
@@ -14,8 +14,8 @@ Import a check routine from https://github.com/k-takata/ptycheck .
  Makefile.am     |   2 +-
  Makefile.w32    |   5 +-
  configure.ac    |   1 +
- src/iscygpty.c  | 185 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- src/iscygpty.h  |  41 +++++++++++++
+ src/iscygpty.c  | 185 ++++++++++++++++++++++++++++++++++++++++++++++++
+ src/iscygpty.h  |  41 +++++++++++
  src/options.c   |   5 +-
  src/print_w32.c |   2 +
  7 files changed, 236 insertions(+), 5 deletions(-)
@@ -54,7 +54,7 @@ index 2794651..9688bba 100644
  TARGET = ag.exe
  
 diff --git a/configure.ac b/configure.ac
-index 982cc3b..8aabc51 100644
+index 1267ce5..bf2b7d8 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -36,6 +36,7 @@ LDFLAGS="$LDFLAGS"
@@ -304,7 +304,7 @@ index 0000000..82fd0af
 +
 +#endif /* _ISCYGPTY_H */
 diff --git a/src/options.c b/src/options.c
-index b8da938..83152c5 100644
+index 146c71b..fffa964 100644
 --- a/src/options.c
 +++ b/src/options.c
 @@ -10,6 +10,7 @@
@@ -353,5 +353,5 @@ index a1fd387..f0a8de6 100644
          INVALID_HANDLE_VALUE == (stdo = (HANDLE)_get_osfhandle(fileno(fp))) ||
          !GetConsoleScreenBufferInfo(stdo, &csbi);
 -- 
-2.15.0
+2.17.0
 

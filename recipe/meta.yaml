@@ -1,5 +1,5 @@
 {% set name = "the_silver_searcher" %}
-{% set version = "2.1.0" %}
+{% set version = "2.2.0" %}
 {% set p = 'm2-' if win else '' %}
 {% set n = 'm2w64-' if win else '' %}
 
@@ -29,6 +29,7 @@ requirements:
     - {{ p }}git
     - {{ p }}autoconf
     - {{ p }}automake          # [not win]
+    - {{ p }}make              # [not win]
     - {{ p }}automake-wrapper  # [win]
     - {{ n }}toolchain         # [win]
     - posix                    # [win]

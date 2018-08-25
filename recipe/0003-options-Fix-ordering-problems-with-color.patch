@@ -1,4 +1,4 @@
-From 0941e9c0c145478470d8f208632c703caf7524f8 Mon Sep 17 00:00:00 2001
+From d9b706d4a72948c0c01e45be2bf2889005b56695 Mon Sep 17 00:00:00 2001
 From: Ray Donnelly <mingw.android@gmail.com>
 Date: Mon, 23 Feb 2015 22:12:15 +0000
 Subject: [PATCH 3/7] options: Fix ordering problems with --color
@@ -18,12 +18,12 @@ Moved around the logic of setting opts.color so that:
 
 4. Default color to TRUE if MSYSCON env. var = mintty.exe
 ---
- src/options.c | 145 +++++++++++++++++++++++++++++++++++-----------------------
+ src/options.c | 145 ++++++++++++++++++++++++++++++--------------------
  src/options.h |  10 ++++
  2 files changed, 97 insertions(+), 58 deletions(-)
 
 diff --git a/src/options.c b/src/options.c
-index 83152c5..ca94126 100644
+index fffa964..a469845 100644
 --- a/src/options.c
 +++ b/src/options.c
 @@ -146,8 +146,16 @@ void print_version(void) {
@@ -93,7 +93,7 @@ index 83152c5..ca94126 100644
      char *file_search_regex = NULL;
      while ((ch = getopt_long(argc, argv, "A:aB:C:cDG:g:FfHhiLlm:nop:QRrSsvVtuUwW:z0", longopts, &opt_index)) != -1) {
          switch (ch) {
-@@ -727,42 +719,6 @@ void parse_options(int argc, char **argv, char **base_paths[], char **paths[]) {
+@@ -728,42 +720,6 @@ void parse_options(int argc, char **argv, char **base_paths[], char **paths[]) {
          opts.after = opts.context;
      }
  
@@ -136,7 +136,7 @@ index 83152c5..ca94126 100644
      if (accepts_query && argc > 0) {
          if (!needs_query && strlen(argv[0]) == 0) {
              // use default query
-@@ -842,6 +798,79 @@ void parse_options(int argc, char **argv, char **base_paths[], char **paths[]) {
+@@ -843,6 +799,79 @@ void parse_options(int argc, char **argv, char **base_paths[], char **paths[]) {
      (*paths)[i] = NULL;
      (*base_paths)[i] = NULL;
  
@@ -238,5 +238,5 @@ index db3e896..990ce6a 100644
      int ackmate;
      pcre *ackmate_dir_filter;
 -- 
-2.15.0
+2.17.0
 

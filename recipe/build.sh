@@ -12,6 +12,9 @@ else
   export HOST_BUILD="--host=${HOST}"
 fi
 
+CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
+LDFLAGS="$LDFLAGS -L$PREFIX/lib"
+
 ./autogen.sh
 ./configure --prefix="${PREFIX}" ${HOST_BUILD}
 make -j${CPU_COUNT} ${VERBOSE_AT}

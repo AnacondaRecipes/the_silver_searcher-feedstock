@@ -1,4 +1,4 @@
-From c722aaa0cc5ae71881c1ae37e0c1c91394bdc73d Mon Sep 17 00:00:00 2001
+From d40e173ea69f2a55f7b52e8465821dc98a287f2d Mon Sep 17 00:00:00 2001
 From: Ray Donnelly <mingw.android@gmail.com>
 Date: Mon, 23 Feb 2015 21:46:45 +0000
 Subject: [PATCH 1/7] lang: Allow both extensions and full filenames
@@ -10,16 +10,16 @@ Renames extension to pattern, but retains the existing format
 where each pattern is treated as an extension. Full filenames
 are indicated by prefixing the pattern with a '^'.
 ---
- src/lang.c    | 57 ++++++++++++++++++++++++++++++++++-----------------------
- src/lang.h    | 24 +++++++++++++-----------
- src/options.c | 26 +++++++++++++-------------
+ src/lang.c    | 57 ++++++++++++++++++++++++++++++---------------------
+ src/lang.h    | 24 ++++++++++++----------
+ src/options.c | 26 +++++++++++------------
  3 files changed, 60 insertions(+), 47 deletions(-)
 
 diff --git a/src/lang.c b/src/lang.c
-index 8585a28..7fca3c2 100644
+index 9a9ee51..091b83e 100644
 --- a/src/lang.c
 +++ b/src/lang.c
-@@ -123,20 +123,27 @@ size_t get_lang_count() {
+@@ -138,20 +138,27 @@ size_t get_lang_count() {
      return sizeof(langs) / sizeof(lang_spec_t);
  }
  
@@ -55,7 +55,7 @@ index 8585a28..7fca3c2 100644
              regex_capacity *= 2;
              regex = ag_realloc(regex, regex_capacity);
          }
-@@ -145,8 +152,12 @@ char *make_lang_regex(char *ext_array, size_t num_exts) {
+@@ -160,8 +167,12 @@ char *make_lang_regex(char *ext_array, size_t num_exts) {
          } else {
              subsequent = 1;
          }
@@ -70,7 +70,7 @@ index 8585a28..7fca3c2 100644
      }
  
      regex[regex_length++] = ')';
-@@ -155,29 +166,29 @@ char *make_lang_regex(char *ext_array, size_t num_exts) {
+@@ -170,29 +181,29 @@ char *make_lang_regex(char *ext_array, size_t num_exts) {
      return regex;
  }
  
@@ -165,7 +165,7 @@ index d0007f9..202da4b 100644
 +size_t combine_file_patterns(size_t *pattern_index, size_t len, char **pats);
  #endif
 diff --git a/src/options.c b/src/options.c
-index dbe3e24..b8da938 100644
+index e63985e..146c71b 100644
 --- a/src/options.c
 +++ b/src/options.c
 @@ -224,9 +224,9 @@ void parse_options(int argc, char **argv, char **base_paths[], char **paths[]) {
@@ -201,7 +201,7 @@ index dbe3e24..b8da938 100644
                          break;
                      }
                  }
-@@ -614,15 +614,15 @@ void parse_options(int argc, char **argv, char **base_paths[], char **paths[]) {
+@@ -615,15 +615,15 @@ void parse_options(int argc, char **argv, char **base_paths[], char **paths[]) {
      }
  
      if (has_filetype) {
@@ -222,7 +222,7 @@ index dbe3e24..b8da938 100644
      if (lang_regex) {
          free(lang_regex);
      }
-@@ -663,8 +663,8 @@ void parse_options(int argc, char **argv, char **base_paths[], char **paths[]) {
+@@ -664,8 +664,8 @@ void parse_options(int argc, char **argv, char **base_paths[], char **paths[]) {
          for (lang_index = 0; lang_index < lang_count; lang_index++) {
              printf("  --%s\n    ", langs[lang_index].name);
              int j;
@@ -234,5 +234,5 @@ index dbe3e24..b8da938 100644
              printf("\n\n");
          }
 -- 
-2.15.0
+2.17.0
 
